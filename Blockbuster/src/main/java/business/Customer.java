@@ -15,33 +15,12 @@ public class Customer {
 		_rentals.add(arg);
 
 	}
-
-	public String statement() {
+	public String statement () {
 
 		double totalAmount = 0;
 		int frequentRentPoints = 0;
 		String result = "Rental Record for " + get_name() + "\n";
 		for (Rental rentals : _rentals) {
-			double thisAmount = 0;
-
-			// determinate amounts for each movie
-			switch (rentals.get_movie().getPriceCode()) {
-			case Movie.REGULAR:
-				thisAmount += 2;
-				if (rentals.get_daysRented() > 2) {
-					thisAmount += (rentals.get_daysRented() - 2) * 1.5;
-				}
-				break;
-			case Movie.NEW_RELEASE:
-				thisAmount += rentals.get_daysRented() * 3;
-				break;
-			case Movie.CHILDRENS:
-				thisAmount += 1.5;
-				if (rentals.get_daysRented() > 3) {
-					thisAmount += (rentals.get_daysRented() - 3) * 1.5;
-				}
-				break;
-			}
 
 			// Add frequent points
 			frequentRentPoints++;
@@ -51,8 +30,8 @@ public class Customer {
 				frequentRentPoints++;
 
 			// show figures for this rental
-			result += "\t" + rentals.get_movie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-			totalAmount += thisAmount;
+			result += "\t" + rentals.get_movie().getTitle() + "\t" + String.valueOf(rentals.getCharge()) + "\n";
+			totalAmount += rentals.getCharge();
 		}
 		// add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
@@ -60,7 +39,8 @@ public class Customer {
 
 		return result;
 	}
-
+	
+	
 	public String get_name() {
 		return _name;
 	}

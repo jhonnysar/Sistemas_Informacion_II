@@ -28,8 +28,15 @@ class CustomerTest {
 				+ "	The Wicher: Sirens of the deep	9.0\n" + "Amount owed is 20.5\n"
 				+ "You earned 4 frequent rent points\n", customer1.statement());
 	}
-	
+	@Test
+	void statementTest2() {
+		addRentals();
+		assertEquals("Rental Record for Anabel Williams\n" + "	Toy Story	1.5\n"
+				+ "	The Wicher: Sirens of the deep	3.0\n" + "Amount owed is 4.5\n"
+				+ "You earned 2 frequent rent points\n", customer2.statement());
+	}
 
+	
 	void addRentals() {
 		customer1.addRental(rental1);
 		customer1.addRental(rental2);

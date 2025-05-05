@@ -10,6 +10,29 @@ class Rental {
 		_daysRented = daysRented;
 	}
 
+	// determinate amounts for each movie
+
+	public double getCharge() {
+		double result = 0;
+		switch (get_movie().getPriceCode()) {
+		case Movie.REGULAR:
+			result += 2;
+			if (get_daysRented() > 2) {
+				result += (get_daysRented() - 2) * 1.5;
+			}
+			break;
+		case Movie.NEW_RELEASE:
+			result += get_daysRented() * 3;
+			break;
+		case Movie.CHILDRENS:
+			result += 1.5;
+			if (get_daysRented() > 3) {
+				result += (get_daysRented() - 3) * 1.5;
+			}
+			break;
+		}
+		return result;
+	}
 	public Movie get_movie() {
 		return _movie;
 	}
