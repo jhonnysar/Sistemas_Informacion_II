@@ -35,7 +35,6 @@ class CustomerTest {
 				+ "	The Wicher: Sirens of the deep	3.0\n" + "Amount owed is 4.5\n"
 				+ "You earned 2 frequent rent points\n", customer2.statement());
 	}
-
 	
 	void addRentals() {
 		customer1.addRental(rental1);
