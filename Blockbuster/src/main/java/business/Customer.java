@@ -17,16 +17,7 @@ public class Customer {
 	}
 
 	public String statement() {
-
-		String result = "Rental Record for " + get_name() + "\n";
-		for (Rental rentals : _rentals) {
-			// show figures for this rental
-			result += "\t" + rentals.getMovie().getTitle() + "\t" + String.valueOf(rentals.getCharge()) + "\n";
-		}
-		// add footer lines
-		result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-		result += "You earned " + String.valueOf(getTotalFrecuentRentPoints()) + " frequent rent points" + "\n";
-		return result;
+		return new TextStatement().value(this);
 	}
 	
 	public double getTotalCharge() {
@@ -46,19 +37,16 @@ public class Customer {
 	}
 
 	public String htmlStatement() {
-		String result = "<h1>Rentals for <em>" + get_name() + "</h1></em><p>\n";
-		for (Rental rentals : _rentals) {
-			// show figures for this rental
-			result += rentals.getMovie().getTitle() + ": " + String.valueOf(rentals.getCharge()) + "<br>\n";
-		}
-		// add footer lines
-		result += "<p>You owe <em>" + String.valueOf(getTotalCharge()) + "</em> <p>\n";
-		result += "On this rental you earned <em>" + String.valueOf(getTotalFrecuentRentPoints()) + "</em> frequent rent points<p>";
-		return result;
+		return new HtmlStatement().value(this);
 	}
 	
 	public String get_name() {
 		return _name;
 	}
+
+	public List<Rental> get_rentals() {
+		return _rentals;
+	}
+	
 
 }
